@@ -6,7 +6,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('user_login/', views.user_login, name='user_login'),
-    path('admin_login', views.admin_login, name='admin_login'),
     path('logout/', views.logout, name='logout'),
     path('add_manga/', views.add_manga, name='add_manga'),
     path('view_manga/', views.view_manga, name='view_manga'),
