@@ -11,6 +11,8 @@ class Manga(models.Model):
     manga_id = models.PositiveIntegerField()
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
+    pdf = models.FileField(upload_to='mangaRoll_app/media/pdfs')
+    image = models.FileField(upload_to='mangaRoll_app/media/images')
 
     def __str__(self):
         return str(self.name) + " ["+str(self.manga_id)+']'

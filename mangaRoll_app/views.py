@@ -17,10 +17,17 @@ def add_manga(request):
         manga_id = request.POST['manga_id']
         category = request.POST['category']
         description = request.POST['description']
+        pdf = request.FILES['pdfs']
+        image = request.FILES['images']
 
-        mangas = Manga.objects.create(name=name, author=author, manga_id=manga_id, category=category, description=description)
+        mangas = Manga.objects.create(name=name, author=author, manga_id=manga_id, category=category, description=description, pdf=pdf, image=image)
         mangas.save()
         alert = True
         return render(request, 'add_manga.html', { 'alert':alert })
     return render(request, 'add_manga.html')
 
+# View Manga
+@login_required(login_url='/user_login')
+def view_mangas(request):
+    mangas = Manga.objects.all()
+    return render(request, 'view_mangas.html', { 'mangas':mangas })
