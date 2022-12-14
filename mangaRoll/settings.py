@@ -27,14 +27,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap_modal_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mangaRoll_app'
+    'mangaRoll_app',
+    'bootstrap_modal_forms',
 ]
 
 MIDDLEWARE = [

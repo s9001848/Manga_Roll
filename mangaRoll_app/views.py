@@ -14,13 +14,12 @@ def add_manga(request):
     if request.method == 'POST':
         name = request.POST['name']
         author = request.POST['author']
-        manga_id = request.POST['manga_id']
         category = request.POST['category']
         description = request.POST['description']
         pdf = request.FILES['pdfs']
         image = request.FILES['images']
 
-        mangas = Manga.objects.create(name=name, author=author, manga_id=manga_id, category=category, description=description, pdf=pdf, image=image)
+        mangas = Manga.objects.create(name=name, author=author, category=category, description=description, pdf=pdf, image=image)
         mangas.save()
         alert = True
         return render(request, 'add_manga.html', { 'alert':alert })
