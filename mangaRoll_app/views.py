@@ -97,3 +97,7 @@ def user_registration(request):
             return render(request, "user_registration.html", { 'passnotmatch': passnotmatch })
 
         user = User.objects.create_user(username=username, name=name, email=email, password=password, profile_image=profile_image)
+        user.save()
+        alert = True
+        return render(request, 'user_registration.html', { 'alert': alert })
+    return render(request, 'user_registration.html')
