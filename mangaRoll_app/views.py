@@ -40,23 +40,15 @@ def profile(request):
 # Edit Profile
 @login_required(login_url = '/user_login')
 def edit_profile(request):
-    users = users.objects.get(user=request.user)
+    users = User.objects.get(user=request.user)
     if request.method == "POST":
+        email = request.POST['email']
         name = request.POST['name']
-        author = request.POST['author']
-        manga_id = request.POST['manga_id']
-        category = request.POST['category']
-        description = request.POST['description']
-        pdf = request.FILES['pdfs']
-        image = request.FILES['images']
+        profile_image = request.POST['profile_image']
 
+        users.user.email = email
         users.user.name = name
-        users.author = author
-        users.manga_id = manga_id
-        users.category = category
-        users.description = description
-        users.pdf = pdf
-        users.image = image
+        users.user.profile_image = profile_image
         users.user.save()
         users.save()
         alert = True
@@ -90,3 +82,44 @@ def change_password(request):
         except:
             pass
     return render(request, "change_password.html")
+
+def user_registration(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        name = request.POST['name']
+        email = request.POST['email']
+        profile_image = request.FILES['profile_image']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+
+        if password != confirm_password:
+            passnotmatch = True
+            return render(request, "user_registration.html", { 'passnotmatch': passnotmatch })
+
+        user = User.objects.create_user(username=username, name=name, email=email, password=password, profile_image=profile_image)
+        user.save()
+        alert = True
+        return render(request, 'user_registration.html', { 'alert': alert })
+    return render(request, 'user_registration.html')
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            if request.user.is_superuser:
+                return HttpResponse('You are not a common user!')
+            else:
+                return redirect('/profile')
+
+        else:
+            alert = True
+            return render(request, 'user_login.html', { 'alert': alert })
+    return render(request, 'user_login.html')
+
+def Logout(request):
+    logout(request)
+    return redirect ('/')

@@ -22,10 +22,10 @@ class User(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
     name = models.CharField(max_length=150)
-    favoriteManga = models.CharField(max_length=150)
+    profile_image = models.ImageField(upload_to='', blank=True)
 
     def __str__(self):
-        return str(self.user) + " ["+str(self.name)+']' + " ["+str(self.favoriteManga)+']'
+        return str(self.user) + " ["+str(self.name)+']' + " ["+str(self.email)+']'
 
 class Chat(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
