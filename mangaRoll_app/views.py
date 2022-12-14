@@ -101,3 +101,25 @@ def user_registration(request):
         alert = True
         return render(request, 'user_registration.html', { 'alert': alert })
     return render(request, 'user_registration.html')
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            if request.user.is_superuser:
+                return HttpResponse('You are not a common user!')
+            else:
+                return redirect('/profile')
+
+        else:
+            alert = True
+            return render(request, 'user_login.html', { 'alert': alert })
+    return render(request, 'user_login.html')
+
+def Logout(request):
+    logout(request)
+    return redirect ('/')
