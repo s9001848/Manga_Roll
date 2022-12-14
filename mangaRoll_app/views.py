@@ -62,3 +62,31 @@ def edit_profile(request):
         alert = True
         return render(request, "edit_profile.html", {'alert':alert})
     return render(request, "edit_profile.html")
+
+def delete_manga(request, myid):
+    mangas = Manga.objects.filter(id=myid)
+    mangas.delete()
+    return redirect("/view_mangas")
+
+def delete_user(request, myid):
+    users = User.objects.filter(id=myid)
+    users.delete()
+    return redirect("/view_users")
+
+def change_password(request):
+    if request.method == "POST":
+        current_password = request.POST['current_password']
+        new_password = request.POST['new_password']
+        try:
+            u = User.objects.get(id=request.user.id)
+            if u.check_password(current_password):
+                u.set_password(new_password)
+                u.save()
+                alert = True
+                return render(request, "change_password.html", {'alert':alert})
+            else:
+                currpasswrong = True
+                return render(request, "change_password.html", {'currpasswrong':currpasswrong})
+        except:
+            pass
+    return render(request, "change_password.html")
