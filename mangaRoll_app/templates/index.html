@@ -1,0 +1,24 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Mangaroll {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="p-4 bg-light">
+    <div class="container-fluid py-3">
+      <h1 class="display-5 fw-bold">Welcome to Mangaroll</h1>
+      <p class="col-md-8 fs-4">Mangaroll upholds the original stories of Manga to the impassioned groups of manga-lovers around the world.</p>
+      <a href="/user_registration/" class="btn btn-primary btn-lg">Create Account</a>
+    </div>
+    <br>
+    <div class="container">
+  <div class="row">
+
+    <div class="col-lg-6">
+      <img src="{% static '' %}" width="50%" height="50%" alt=""><br><br>
+      <a class="btn btn-outline-primary btn-lg" href="/user_login/">Login</a>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock %}

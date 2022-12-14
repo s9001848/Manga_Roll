@@ -8,7 +8,6 @@ from datetime import datetime, timedelta
 class Manga(models.Model):
     name = models.CharField(max_length=150)
     author = models.CharField(max_length=100)
-    manga_id = models.PositiveIntegerField()
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     pdf = models.FileField(upload_to='mangaRoll_app/media/pdfs')
