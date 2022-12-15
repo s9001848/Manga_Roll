@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render, HttpResponse
-from .models import *
-from . import forms, models
+from .models import Manga
+from .models import Chat
+from . import forms
 from django.contrib.auth import authenticate, login, logout
-from datetime import date
 from django.contrib.auth.decorators import login_required
 
 def index(request):

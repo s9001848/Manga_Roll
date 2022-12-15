@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -13,6 +13,6 @@ urlpatterns = [
     path('delete_user/<int:myid>/', views.delete_user, name='delete_user'),
     path('user_registration/', views.user_registration, name='user_registration'),
     path('change_password/', views.change_password, name='change_password'),
-    path('create_chat/', views.create_chat, name='create_chat'),
-    path('list_chat/', views.list_chat, name='list_chat'),
+    # path('create_chat/', views.create_chat, name='create_chat'),
+    # path('list_chat/', views.list_chat, name='list_chat'),
 ]
