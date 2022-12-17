@@ -32,7 +32,7 @@ background: #212529b8;
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="{{user.profile_image.url}}" alt="" width="310px" height="270px">
+                    <img src="{{user.profile_image.url}}" alt="" width="200px" height="200px">
                 </div>
             </div>
             <div class="col-md-8">
@@ -41,10 +41,18 @@ background: #212529b8;
                         <div class="row">
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Name:</label>
+                                <label>Username:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{user.name}}</p>
+                                <p>{{user}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Full Name:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{user.get_full_name}}</p>
                             </div>
                         </div>
                         <div class="row">
@@ -53,6 +61,14 @@ background: #212529b8;
                             </div>
                             <div class="col-md-6">
                                 <p>{{user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Favorite Genre:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{user.manger.favorite_genre}}</p>
                             </div>
                         </div>
                         </div>

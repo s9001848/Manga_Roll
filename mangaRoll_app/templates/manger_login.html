@@ -7,7 +7,7 @@
 <div class="container">
 <br>
 <h1 class="text-center"><u>Login</u></h1>
-    <form method="POST"> {% csrf_token %}
+    <form method="POST" action="/manger_login/"> {% csrf_token %}
 
     <div class="row mt-4">
         <div class="form-group col-md-12">
@@ -23,13 +23,14 @@
         </div>
     </div>
     <button type="submit" class="btn btn-outline-primary mt-4">Login</button>
+    </form>
 </div>
 {% endblock %}
 {% block js %}
 <script>
     {% if alert %}
     alert("Invalid Username or Password.")
-    document.location = "/user_login"
+    document.location = "/manger_login"
     {% endif %}
 </script>
 {% endblock %}
