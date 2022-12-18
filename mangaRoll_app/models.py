@@ -8,8 +8,7 @@ class Manga(models.Model):
     author = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
-    pdf = models.FileField(upload_to='mangaRoll_app/media/pdfs')
-    image = models.FileField(upload_to='mangaRoll_app/media/images')
+    this_image = models.ImageField(upload_to="mangaroll-image")
 
     def __str__(self):
         return str(self.name) + ' ' + str(self.id)
@@ -18,7 +17,7 @@ class Manger(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
     name=models.CharField(max_length=150)
-    profile_image = models.ImageField(upload_to='mangaRoll_app/static', blank=True)
+    profile_image = models.ImageField(upload_to="mangaroll-image")
     favorite_genre=models.CharField(max_length=200)
     objects = UserManager()
 

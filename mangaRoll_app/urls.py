@@ -12,7 +12,7 @@ urlpatterns = [
     path('manger_login/', views.manger_login, name='manger_login'),
     path('logout/', views.logout, name='logout'),
     path('delete_manga/<int:myid>/', views.delete_manga, name='delete_manga'),
-    path('delete_user/<int:myid>/', views.delete_user, name='delete_user'),
+    # path('download_manga/<str:fileurl>', views.download_manga, name='download_manga'),
     # path('create_chat/', views.create_chat, name='create_chat'),
-    # path('list_chat/', views.list_chat, name='list_chat'),
+    # path('listed_chat/', views.listed_chat, name='listed_chat'),
 ]

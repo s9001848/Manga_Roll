@@ -1,13 +1,20 @@
 from django.shortcuts import redirect, render, HttpResponse
+
+from django.urls import reverse_lazy
+from . import models
 from .models import *
 from .models import Manga
 from .models import Chat
 from .models import Manger
 from .models import User
-from . import forms, models
 from datetime import date
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+
+import mimetypes
 
 def index(request):
     return render(request, 'index.html')
@@ -20,13 +27,12 @@ def add_manga(request):
         author = request.POST['author']
         category = request.POST['category']
         description = request.POST['description']
-        # pdf = request.FILES['pdfs']
-        # image = request.FILES['images']
+        this_image = request.FILES['this_image']
 
-        mangas = Manga.objects.create(name=name, author=author, category=category, description=description)
+        mangas = Manga.objects.create(name=name, author=author, category=category, description=description, this_image=this_image)
         mangas.save()
         alert = True
-        return render(request, 'add_manga.html', { 'alert':alert })
+        return render(request, 'add_manga.html')
     return render(request, 'add_manga.html')
 
 # View Manga
@@ -61,12 +67,7 @@ def edit_profile(request):
 def delete_manga(request, myid):
     mangas = Manga.objects.filter(id=myid)
     mangas.delete()
-    return redirect("/view_mangas")
-
-def delete_user(request, myid):
-    users = Manger.objects.filter(id=myid)
-    users.delete()
-    return redirect("/view_users")
+    return redirect("/view_mangas/")
 
 def change_password(request):
     if request.method == "POST":
@@ -126,6 +127,27 @@ def manger_login(request):
             alert = True
             return render(request, 'manger_login.html', { 'alert': alert })
     return render(request, "manger_login.html")
+
+
+
+# def create_chat(request):
+#     form_class = ChatForm
+#     model = Chat
+#     template_name = 'chat_form.html'
+#     success_url = reverse_lazy('listed_chat')
+
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.user = self.request.user
+#         self.object.save()
+#         return form_valid(form)
+
+# class listed_chat(LoginRequiredMixin, ListView):
+#     model = Chat
+#     template_name = 'chat_list.html'
+
+#     def get_queryset(self):
+#         return Chat.objects.filter(posted_at_lt=timezone.now()).order_by('posted_at')
 
 def Logout(request):
     logout(request)
