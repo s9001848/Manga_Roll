@@ -19,6 +19,7 @@
                 <th>Category</th>
                 <th>Description</th>
                 <th>Cover</th>
+                <th>PDF</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -31,6 +32,11 @@
                 <td>{{manga.category}}</td>
                 <td>{{manga.description}}</td>
                 <td><img src="{{manga.this_image.url}}" alt="" width="200px" height="200px"></td>
+                {% if manga.this_pdf.url is null %}
+                <td>No PDF</td>
+                {% else %}
+                <td><a href="{{manga.this_pdf.url}}">View PDF</a></td>
+                {% endif %}
                 <td><a href="/delete_manga/{{manga.id}}/" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this manga?')">Delete</a></td>
             </tr>
             {% endfor %}

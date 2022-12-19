@@ -9,6 +9,7 @@ class Manga(models.Model):
     category = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     this_image = models.ImageField(upload_to="mangaroll-image")
+    this_pdf = models.FileField(upload_to="mangaroll-image", blank=True)
 
     def __str__(self):
         return str(self.name) + ' ' + str(self.id)

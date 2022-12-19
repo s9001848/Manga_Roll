@@ -28,11 +28,12 @@ def add_manga(request):
         category = request.POST['category']
         description = request.POST['description']
         this_image = request.FILES['this_image']
+        this_pdf = request.FILES['this_pdf']
 
-        mangas = Manga.objects.create(name=name, author=author, category=category, description=description, this_image=this_image)
+        mangas = Manga.objects.create(name=name, author=author, category=category, description=description, this_image=this_image, this_pdf=this_pdf)
         mangas.save()
         alert = True
-        return render(request, 'view_mangas.html')
+        return redirect('/view_mangas/')
     return render(request, 'add_manga.html')
 
 # View Manga
