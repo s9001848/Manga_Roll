@@ -5,7 +5,7 @@
 {% endblock %}
 {% block body %}
 <div class="container">
-    <form method="POST"> {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data" action="{% url 'add_manga' %}"> {% csrf_token %} {{form.errors}}
         <div class="row mt-4">
             <div class="form-group col-md-12">
                 <label><i style="font-weight: bold;">Manga Name</i></label>
@@ -36,7 +36,8 @@
         <div class="row mt-4">
             <div class="form-group col-md-12">
                 <label><i style="font-weight: bold;">Choose Manga Image</i></label>
-                <input type="file" class="form-control mt-2" name="this_image" required></div>
+                <input type="file" class="form-control mt-2" name="this_image" required>
+            </div>
         </div>
         <button type="submit" class="btn btn-outline-primary mt-4">Add Manga</button>
     </form>

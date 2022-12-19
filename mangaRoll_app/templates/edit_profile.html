@@ -7,7 +7,7 @@
 {% block body %}
 
 <div class="container">
-    <form method="POST"> {% csrf_token %} {{form.errors}}
+    <form method="POST" enctype="multipart/form-data" action="{% url 'edit_profile' %}"> {% csrf_token %} {{form.errors}}
 <div class="row mt-4">
     <div class="form-group col-md-6">
         <label><i style="font-weight: bold;">Email</i></label>

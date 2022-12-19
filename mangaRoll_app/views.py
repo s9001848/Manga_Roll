@@ -32,7 +32,7 @@ def add_manga(request):
         mangas = Manga.objects.create(name=name, author=author, category=category, description=description, this_image=this_image)
         mangas.save()
         alert = True
-        return render(request, 'add_manga.html')
+        return render(request, 'view_mangas.html')
     return render(request, 'add_manga.html')
 
 # View Manga
@@ -53,7 +53,7 @@ def edit_profile(request):
     if request.method == "POST":
         email = request.POST['email']
         name = request.POST['name']
-        profile_image = request.POST['profile_image']
+        profile_image = request.FILES['profile_image']
 
         users.user.email = email
         users.name = name
@@ -87,6 +87,7 @@ def change_password(request):
             pass
     return render(request, "change_password.html")
 
+@login_required(login_url = '/manger_login')
 def manger_registration(request):
     if request.method == 'POST':
         username = request.POST['username']
