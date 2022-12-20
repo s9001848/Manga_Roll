@@ -17,7 +17,7 @@ class Manga(models.Model):
 class Manger(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
-    name=models.CharField(max_length=150)
+    name = models.CharField(max_length=150)
     profile_image = models.ImageField(upload_to="mangaroll-image")
     favorite_genre=models.CharField(max_length=200)
     objects = UserManager()

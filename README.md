@@ -9,6 +9,31 @@ Mangaroll is an application that allows users to upload their favorite manga ont
 - Bootstrap
 - Cloudinary
 
+## Installing and Configuring Cloudinary
+Install django_cloudinary_storage
+```js
+pip install django_cloudinary_storage
+```
+Import cloudinary storage in settings.py
+```js
+import cloudinary_storage
+```
+Add cloudinary and cloudinary_storage under INSTALLED_APPS
+```js
+'cloudinary',
+'cloudinary_storage'
+```
+At the end of settings.py add
+```js
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'dj6uylolk',
+    'API_KEY' : '285475489411426',
+    'API_SECRET' : '1TaUeFCUoH61H5FKGwKgFv4R_QE'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+```
+
 ## Collaborators
 Full Stack Developers:
 - Raymond Lee
@@ -34,4 +59,6 @@ Full Stack Developers:
 ## Initial Wiredframe and ERD
 ![Mangaroll Wireframe and ERD](MangaRoll_Wireframe_ERD.png)
 
+## Homepage
+![Mangaroll Homepage](Mangaroll_Homepage.png)
 
