@@ -53,11 +53,9 @@ def edit_profile(request):
     users = Manger.objects.get(user=request.user)
     if request.method == "POST":
         email = request.POST['email']
-        name = request.POST['name']
         profile_image = request.FILES['profile_image']
 
         users.user.email = email
-        users.name = name
         users.profile_image = profile_image
         users.user.save()
         users.save()
