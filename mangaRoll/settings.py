@@ -2,6 +2,7 @@ import os
 from os import environ
 from dotenv import load_dotenv, dotenv_values
 from pathlib import Path
+import cloudinary_storage
 
 config = dotenv_values('.env')
 print(config, '<><><><><><><><><><><><><><>><><><><><><><><>')
@@ -35,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mangaRoll_app',
     'bootstrap_modal_forms',
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +126,11 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'dj6uylolk',
+    'API_KEY' : '285475489411426',
+    'API_SECRET' : '1TaUeFCUoH61H5FKGwKgFv4R_QE'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
